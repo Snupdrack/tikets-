@@ -87,17 +87,23 @@ export default function PublicTicket() {
             boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 60px -15px rgba(234, 234, 234, 0.05)'
           }}
         >
-          {/* Header */}
+          {/* Header con Logo */}
           <div className="text-center mb-6">
-            <h1 className="heading text-2xl font-bold text-white tracking-tight">
-              ASYNCTICKET
-            </h1>
+            <div className="mb-4">
+              <img 
+                src="https://customer-assets.emergentagent.com/job_ticket-generator-12/artifacts/8akxn5rj_logo%20%28800%20x%20400%20px%29_20260304_043507_0000.png" 
+                alt="SynkData Logo"
+                className="max-w-[180px] mx-auto"
+              />
+            </div>
             <p className="text-[10px] text-[#a1a1aa] uppercase tracking-[3px] mt-1">
               Comprobante de Pago
             </p>
           </div>
 
-          <div className="border-t-2 border-dashed border-white/15 my-5" />
+          <div className="text-center text-[#00d4ff] text-xs tracking-widest my-4">
+            ✦════════════════════✦
+          </div>
 
           {/* Meta Info */}
           <div className="space-y-2 text-sm">
@@ -177,7 +183,11 @@ export default function PublicTicket() {
               <span className="text-xl text-[#a1a1aa] align-super">$</span>
               {ticket.total.toFixed(2)}
             </p>
-            <span className="inline-block mt-3 px-4 py-1.5 rounded-full text-[11px] font-semibold uppercase tracking-wider bg-[#22c55e]/15 text-[#22c55e]">
+            <span className={`inline-block mt-3 px-4 py-1.5 rounded-full text-[11px] font-semibold uppercase tracking-wider ${
+              ticket.payment_method === 'Binance' 
+                ? 'bg-[#f3ba2f]/15 text-[#f3ba2f]' 
+                : 'bg-[#22c55e]/15 text-[#22c55e]'
+            }`}>
               {ticket.payment_method}
             </span>
           </div>
@@ -188,28 +198,50 @@ export default function PublicTicket() {
             </div>
           )}
 
-          <div className="border-t-2 border-dashed border-white/15 my-5" />
+          <div className="text-center text-[#00d4ff] text-xs tracking-widest my-4">
+            ✦════════════════════✦
+          </div>
 
-          {/* QR Section */}
+          {/* Footer personalizado */}
           <div className="text-center">
-            <div className="inline-block p-3 bg-[#1a1a1a] rounded-lg border border-white/10">
+            <p className="text-sm text-white mb-2">
+              🙏 Muchas gracias por su compra
+            </p>
+            <p className="text-[11px] text-[#a1a1aa] italic leading-relaxed mb-4">
+              𝘊𝘰𝘯𝘴𝘦𝘳𝘷𝘦 𝘦𝘴𝘵𝘦 𝘳𝘦𝘤𝘪𝘣𝘰<br/>
+              𝘱𝘢𝘳𝘢 𝘤𝘶𝘢𝘭𝘲𝘶𝘪𝘦𝘳<br/>
+              𝘥𝘶𝘥𝘢, 𝘲𝘶𝘦𝘫𝘢 𝘰 𝘢𝘤𝘭𝘢𝘳𝘢𝘤𝘪ó𝘯
+            </p>
+            
+            {/* QR Section */}
+            <div className="inline-block p-3 bg-[#1a1a1a] rounded-lg border border-white/10 my-4">
               <img 
                 src={`https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://www.AsyncData.online&bgcolor=1a1a1a&color=eaeaea`}
                 alt="QR Code"
                 className="w-20 h-20"
               />
             </div>
-            <p className="text-[10px] uppercase tracking-wider text-[#71717a] mt-3">
-              Visita nuestra plataforma
-            </p>
-            <p className="mono text-xs text-[#a1a1aa] mt-1">
-              www.AsyncData.online
-            </p>
+            
+            <div className="mt-4">
+              <p className="text-[11px] text-[#71717a]">◇ ─ Comprobante digital ─ ◇</p>
+              <p className="mono text-xs text-[#00d4ff] mt-2">
+                🌐 www.AsyncData.online
+              </p>
+            </div>
+            
+            <div className="mt-4">
+              <p className="text-[9px] text-[#71717a] tracking-wider">
+                ⋆ ᵖᵒʷᵉʳᵉᵈ ᵇʸ ⋆
+              </p>
+              <p className="text-[11px] text-[#00d4ff] font-semibold mt-1">
+                ✧ AsyncData Infrastructure ✧ 🚀
+              </p>
+            </div>
           </div>
 
-          <p className="text-center text-[11px] text-[#52525b] mt-6">
-            ¡Gracias por su preferencia!
-          </p>
+          <div className="text-center text-[#00d4ff] text-xs tracking-widest mt-4">
+            ✦════════════════════✦
+          </div>
         </div>
 
         {/* Zigzag bottom */}

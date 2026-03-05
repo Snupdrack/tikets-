@@ -37,6 +37,7 @@ const paymentMethodColors = {
   'Efectivo': 'bg-emerald-500/15 text-emerald-400 border-emerald-500/20',
   'Transferencia': 'bg-blue-500/15 text-blue-400 border-blue-500/20',
   'Tarjeta': 'bg-purple-500/15 text-purple-400 border-purple-500/20',
+  'Binance': 'bg-[#f3ba2f]/15 text-[#f3ba2f] border-[#f3ba2f]/20',
   'Depósito': 'bg-amber-500/15 text-amber-400 border-amber-500/20',
   'Otro': 'bg-zinc-500/15 text-zinc-400 border-zinc-500/20',
 };

@@ -17,10 +17,9 @@ import { ArrowLeft, Plus, Trash2, Save, Eye } from 'lucide-react';
 
 const paymentMethods = [
   'Efectivo',
-  'Transferencia',
   'Tarjeta',
-  'Depósito',
-  'Otro',
+  'Transferencia',
+  'Binance',
 ];
 
 const emptyItem = { name: '', qty: 1, unit_price: 0, line_total: 0 };
@@ -189,14 +188,24 @@ export default function NewTicket() {
             </Button>
           </div>
           
-          <div className="space-y-4">
+          {/* Items Header */}
+          <div className="flex gap-3 items-center mb-2 text-xs uppercase tracking-wider text-muted-foreground">
+            <div className="flex-1">Nombre del producto</div>
+            <div className="w-20 text-center">Cantidad</div>
+            <div className="w-28 text-right">Precio</div>
+            <div className="w-28 text-right">Total</div>
+            <div className="w-11"></div>
+          </div>
+          
+          <div className="space-y-3">
             {items.map((item, index) => (
               <div key={index} className="flex gap-3 items-start" data-testid={`item-row-${index}`}>
                 <div className="flex-1">
                   <Input
+                    type="text"
                     value={item.name}
                     onChange={(e) => updateItem(index, 'name', e.target.value)}
-                    placeholder="Descripción"
+                    placeholder="Ej: Camisa, Servicio..."
                     className="h-11 bg-secondary/50 border-transparent"
                     data-testid={`item-name-${index}`}
                   />
@@ -206,7 +215,7 @@ export default function NewTicket() {
                     type="number"
                     value={item.qty}
                     onChange={(e) => updateItem(index, 'qty', e.target.value)}
-                    placeholder="Cant"
+                    placeholder="1"
                     min="1"
                     step="0.5"
                     className="h-11 bg-secondary/50 border-transparent text-center mono"
@@ -218,7 +227,7 @@ export default function NewTicket() {
                     type="number"
                     value={item.unit_price}
                     onChange={(e) => updateItem(index, 'unit_price', e.target.value)}
-                    placeholder="Precio"
+                    placeholder="0.00"
                     min="0"
                     step="0.01"
                     className="h-11 bg-secondary/50 border-transparent text-right mono"

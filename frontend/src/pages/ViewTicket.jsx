@@ -90,17 +90,23 @@ export default function ViewTicket() {
         <div className="ticket-card bg-[#1a1a1a] rounded-t-2xl p-8 relative shadow-2xl" style={{
           boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 60px -15px rgba(234, 234, 234, 0.05)'
         }}>
-          {/* Header */}
+          {/* Header con Logo */}
           <div className="text-center mb-6">
-            <h2 className="text-2xl font-bold text-white tracking-tight" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-              ASYNCTICKET
-            </h2>
+            <div className="mb-4">
+              <img 
+                src="https://customer-assets.emergentagent.com/job_ticket-generator-12/artifacts/8akxn5rj_logo%20%28800%20x%20400%20px%29_20260304_043507_0000.png" 
+                alt="SynkData Logo"
+                className="max-w-[180px] mx-auto"
+              />
+            </div>
             <p className="text-[10px] text-muted-foreground uppercase tracking-[3px] mt-1">
               Comprobante de Pago
             </p>
           </div>
 
-          <div className="receipt-separator" />
+          <div className="text-center text-[#00d4ff] text-xs tracking-widest my-4">
+            ✦════════════════════✦
+          </div>
 
           {/* Meta Info */}
           <div className="space-y-2 text-sm">
@@ -180,7 +186,11 @@ export default function ViewTicket() {
               <span className="text-xl text-muted-foreground align-super">$</span>
               {ticket.total.toFixed(2)}
             </p>
-            <span className="inline-block mt-3 px-4 py-1.5 rounded-full text-[11px] font-semibold uppercase tracking-wider bg-emerald-500/15 text-emerald-400">
+            <span className={`inline-block mt-3 px-4 py-1.5 rounded-full text-[11px] font-semibold uppercase tracking-wider ${
+              ticket.payment_method === 'Binance' 
+                ? 'bg-[#f3ba2f]/15 text-[#f3ba2f]' 
+                : 'bg-emerald-500/15 text-emerald-400'
+            }`}>
               {ticket.payment_method}
             </span>
           </div>
@@ -191,26 +201,50 @@ export default function ViewTicket() {
             </div>
           )}
 
-          <div className="receipt-separator" />
-
-          {/* QR Section */}
-          <div className="text-center">
-            <div className="inline-block p-3 bg-[#1a1a1a] rounded-lg border border-white/10">
-              <div className="w-20 h-20 bg-white/5 rounded flex items-center justify-center text-muted-foreground text-xs">
-                QR Code
-              </div>
-            </div>
-            <p className="text-[10px] uppercase tracking-wider text-zinc-500 mt-3">
-              Visita nuestra plataforma
-            </p>
-            <p className="mono text-xs text-muted-foreground mt-1">
-              www.AsyncData.online
-            </p>
+          <div className="text-center text-[#00d4ff] text-xs tracking-widest my-4">
+            ✦════════════════════✦
           </div>
 
-          <p className="text-center text-[11px] text-zinc-600 mt-6">
-            ¡Gracias por su preferencia!
-          </p>
+          {/* Footer personalizado */}
+          <div className="text-center">
+            <p className="text-sm text-white mb-2">
+              🙏 Muchas gracias por su compra
+            </p>
+            <p className="text-[11px] text-muted-foreground italic leading-relaxed mb-4">
+              𝘊𝘰𝘯𝘴𝘦𝘳𝘷𝘦 𝘦𝘴𝘵𝘦 𝘳𝘦𝘤𝘪𝘣𝘰<br/>
+              𝘱𝘢𝘳𝘢 𝘤𝘶𝘢𝘭𝘲𝘶𝘪𝘦𝘳<br/>
+              𝘥𝘶𝘥𝘢, 𝘲𝘶𝘦𝘫𝘢 𝘰 𝘢𝘤𝘭𝘢𝘳𝘢𝘤𝘪ó𝘯
+            </p>
+            
+            {/* QR Section */}
+            <div className="inline-block p-3 bg-[#1a1a1a] rounded-lg border border-white/10 my-4">
+              <img 
+                src={`https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://www.AsyncData.online&bgcolor=1a1a1a&color=eaeaea`}
+                alt="QR Code"
+                className="w-20 h-20"
+              />
+            </div>
+            
+            <div className="mt-4">
+              <p className="text-[11px] text-zinc-500">◇ ─ Comprobante digital ─ ◇</p>
+              <p className="mono text-xs text-[#00d4ff] mt-2">
+                🌐 www.AsyncData.online
+              </p>
+            </div>
+            
+            <div className="mt-4">
+              <p className="text-[9px] text-zinc-500 tracking-wider">
+                ⋆ ᵖᵒʷᵉʳᵉᵈ ᵇʸ ⋆
+              </p>
+              <p className="text-[11px] text-[#00d4ff] font-semibold mt-1">
+                ✧ AsyncData Infrastructure ✧ 🚀
+              </p>
+            </div>
+          </div>
+
+          <div className="text-center text-[#00d4ff] text-xs tracking-widest mt-4">
+            ✦════════════════════✦
+          </div>
         </div>
 
         {/* Zigzag bottom */}

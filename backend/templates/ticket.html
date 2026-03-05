@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recibo {{ ticket.receipt_number }} - AsyncTicket</title>
+    <title>Recibo {{ ticket.receipt_number }} - SynkData</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -59,9 +59,18 @@
             margin-bottom: 24px;
         }
         
+        .logo-container {
+            margin-bottom: 16px;
+        }
+        
+        .logo-container img {
+            max-width: 180px;
+            height: auto;
+        }
+        
         .brand {
             font-family: 'Montserrat', sans-serif;
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 700;
             letter-spacing: -0.5px;
             color: #ffffff;
@@ -79,6 +88,14 @@
             border: none;
             border-top: 2px dashed rgba(255, 255, 255, 0.15);
             margin: 20px 0;
+        }
+        
+        .decorative-line {
+            text-align: center;
+            color: #00d4ff;
+            font-size: 12px;
+            letter-spacing: 2px;
+            margin: 16px 0;
         }
         
         .separator-double {
@@ -194,12 +211,6 @@
             color: #22c55e;
         }
         
-        .total-row.final {
-            padding-top: 16px;
-            margin-top: 12px;
-            border-top: 2px solid rgba(255, 255, 255, 0.15);
-        }
-        
         .total-label {
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -250,6 +261,11 @@
             margin-top: 12px;
         }
         
+        .payment-badge.binance {
+            background: rgba(243, 186, 47, 0.15);
+            color: #f3ba2f;
+        }
+        
         .notes-section {
             background: rgba(255, 255, 255, 0.03);
             padding: 12px;
@@ -280,27 +296,74 @@
             display: block;
         }
         
-        .qr-text {
+        /* Footer personalizado */
+        .footer-section {
+            text-align: center;
+            margin-top: 24px;
+            padding-top: 16px;
+        }
+        
+        .footer-decorative {
+            color: #00d4ff;
             font-size: 10px;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+        
+        .footer-thanks {
+            font-size: 14px;
+            color: #eaeaea;
+            margin-bottom: 8px;
+        }
+        
+        .footer-thanks-emoji {
+            margin-right: 4px;
+        }
+        
+        .footer-message {
+            font-size: 11px;
+            color: #a1a1aa;
+            font-style: italic;
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+        
+        .footer-link-section {
+            margin: 16px 0;
+        }
+        
+        .footer-diamond {
+            color: #71717a;
+            font-size: 11px;
+        }
+        
+        .footer-url {
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            color: #00d4ff;
+            margin: 8px 0;
+        }
+        
+        .footer-url-icon {
+            margin-right: 4px;
+        }
+        
+        .footer-powered {
+            font-size: 9px;
             color: #71717a;
             margin-top: 12px;
-            text-transform: uppercase;
             letter-spacing: 1px;
         }
         
-        .qr-url {
-            font-family: 'Space Mono', monospace;
+        .footer-brand {
+            color: #00d4ff;
             font-size: 11px;
-            color: #a1a1aa;
+            font-weight: 600;
             margin-top: 4px;
         }
         
-        .footer-text {
-            text-align: center;
-            font-size: 11px;
-            color: #52525b;
-            margin-top: 32px;
-            padding-top: 16px;
+        .footer-rocket {
+            margin-left: 4px;
         }
         
         .actions {
@@ -381,13 +444,15 @@
 <body>
     <div class="ticket-wrapper">
         <div class="ticket">
-            <!-- Header -->
+            <!-- Header con Logo -->
             <div class="header">
-                <div class="brand">ASYNCTICKET</div>
+                <div class="logo-container">
+                    <img src="https://customer-assets.emergentagent.com/job_ticket-generator-12/artifacts/8akxn5rj_logo%20%28800%20x%20400%20px%29_20260304_043507_0000.png" alt="SynkData Logo">
+                </div>
                 <div class="brand-sub">Comprobante de Pago</div>
             </div>
             
-            <hr class="separator">
+            <div class="decorative-line">✦════════════════════✦</div>
             
             <!-- Meta Info -->
             <div class="meta-row">
@@ -452,7 +517,7 @@
                 <div class="grand-total-value">
                     <span class="grand-total-currency">$</span>{{ "%.2f"|format(ticket.total) }}
                 </div>
-                <span class="payment-badge">{{ ticket.payment_method }}</span>
+                <span class="payment-badge {% if ticket.payment_method == 'Binance' %}binance{% endif %}">{{ ticket.payment_method }}</span>
             </div>
             
             {% if ticket.notes %}
@@ -461,20 +526,42 @@
             </div>
             {% endif %}
             
-            <hr class="separator">
+            <div class="decorative-line">✦════════════════════✦</div>
             
-            <!-- QR Section -->
-            <div class="qr-section">
-                <div class="qr-code">
-                    <img src="data:image/png;base64,{{ qr_base64 }}" alt="QR Code">
+            <!-- Footer personalizado -->
+            <div class="footer-section">
+                <div class="footer-thanks">
+                    <span class="footer-thanks-emoji">🙏</span> Muchas gracias por su compra
                 </div>
-                <div class="qr-text">Visita nuestra plataforma</div>
-                <div class="qr-url">www.AsyncData.online</div>
+                <div class="footer-message">
+                    𝘊𝘰𝘯𝘴𝘦𝘳𝘷𝘦 𝘦𝘴𝘵𝘦 𝘳𝘦𝘤𝘪𝘣𝘰<br>
+                    𝘱𝘢𝘳𝘢 𝘤𝘶𝘢𝘭𝘲𝘶𝘪𝘦𝘳<br>
+                    𝘥𝘶𝘥𝘢, 𝘲𝘶𝘦𝘫𝘢 𝘰 𝘢𝘤𝘭𝘢𝘳𝘢𝘤𝘪ó𝘯
+                </div>
+                
+                <!-- QR Section -->
+                <div class="qr-section">
+                    <div class="qr-code">
+                        <img src="data:image/png;base64,{{ qr_base64 }}" alt="QR Code">
+                    </div>
+                </div>
+                
+                <div class="footer-link-section">
+                    <div class="footer-diamond">◇ ─ Comprobante digital ─ ◇</div>
+                    <div class="footer-url">
+                        <span class="footer-url-icon">🌐</span> www.AsyncData.online
+                    </div>
+                </div>
+                
+                <div class="footer-powered">
+                    ⋆ ᵖᵒʷᵉʳᵉᵈ ᵇʸ ⋆
+                </div>
+                <div class="footer-brand">
+                    ✧ AsyncData Infrastructure ✧ <span class="footer-rocket">🚀</span>
+                </div>
             </div>
             
-            <div class="footer-text">
-                ¡Gracias por su preferencia!
-            </div>
+            <div class="decorative-line">✦════════════════════✦</div>
         </div>
     </div>
     
