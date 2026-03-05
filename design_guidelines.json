@@ -1,0 +1,141 @@
+{
+  "identity": {
+    "name": "AsyncTicket",
+    "persona": "The Performance Pro / Modern Tech",
+    "emotional_archetype": "ARCHETYPE 2: THE PERFORMANCE PRO",
+    "vibe": "Professional, Sleek, Instant, Digital-Native"
+  },
+  "typography": {
+    "fonts": {
+      "heading": "Montserrat",
+      "body": "Inter",
+      "mono": "Space Mono"
+    },
+    "scale": {
+      "h1": "text-4xl md:text-5xl font-bold tracking-tight",
+      "h2": "text-3xl font-semibold tracking-tight",
+      "h3": "text-2xl font-semibold tracking-tight",
+      "p": "text-base leading-relaxed text-muted-foreground",
+      "small": "text-sm font-medium text-muted-foreground",
+      "tiny": "text-xs uppercase tracking-widest text-muted-foreground"
+    },
+    "weights": {
+      "heading": "font-bold",
+      "body": "font-normal"
+    }
+  },
+  "colors": {
+    "palette": {
+      "background": "#0f0f0f",
+      "foreground": "#eaeaea",
+      "card": "#1a1a1a",
+      "card-foreground": "#ffffff",
+      "primary": "#eaeaea",
+      "primary-foreground": "#0f0f0f",
+      "secondary": "#27272a",
+      "secondary-foreground": "#ffffff",
+      "muted": "#27272a",
+      "muted-foreground": "#a1a1aa",
+      "accent": "#22c55e",
+      "accent-foreground": "#000000",
+      "border": "#27272a",
+      "input": "#27272a",
+      "ring": "#eaeaea"
+    },
+    "gradients": {
+      "receipt-shine": "linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 100%)"
+    }
+  },
+  "layout": {
+    "spacing": {
+      "container": "p-6 md:p-8 lg:p-12",
+      "section": "py-12 md:py-24",
+      "element": "gap-4 md:gap-6"
+    },
+    "grid_modes": {
+      "dashboard": "grid-cols-1 md:grid-cols-3 gap-6",
+      "form": "max-w-xl mx-auto flex flex-col gap-6"
+    },
+    "border_radius": {
+      "default": "rounded-lg",
+      "card": "rounded-xl",
+      "button": "rounded-full"
+    }
+  },
+  "components": {
+    "TicketView": {
+      "style": "bg-[#1a1a1a] text-[#eaeaea] font-mono p-8 rounded-t-xl relative shadow-2xl mx-auto max-w-sm",
+      "details": "Use a zigzag or dashed border-bottom to simulate a torn receipt. Center the total amount with massive font size.",
+      "features": [
+        "Serrated bottom edge using CSS mask or SVG",
+        "Monospaced numbers for alignment",
+        "High contrast total amount"
+      ]
+    },
+    "DashboardTable": {
+      "style": "border border-border rounded-xl overflow-hidden",
+      "header": "bg-secondary/50 text-xs uppercase tracking-wider font-semibold text-muted-foreground"
+    },
+    "QuickForm": {
+      "style": "space-y-6",
+      "input": "bg-secondary/50 border-transparent focus:border-primary focus:ring-0 h-12 text-lg"
+    },
+    "buttons": {
+      "primary": "bg-primary text-primary-foreground hover:bg-white/90 shadow-[0_0_20px_rgba(255,255,255,0.1)] transition-all active:scale-95",
+      "secondary": "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+      "ghost": "hover:bg-white/5 text-muted-foreground hover:text-foreground"
+    }
+  },
+  "visual_enhancers": {
+    "textures": {
+      "noise": "opacity-20 pointer-events-none fixed inset-0 z-50 mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"
+    },
+    "shadows": {
+      "glow": "shadow-[0_0_40px_-10px_rgba(255,255,255,0.1)]",
+      "sharp": "shadow-none border border-white/10"
+    },
+    "separators": {
+      "receipt_line": "border-b-2 border-dashed border-white/20 my-6"
+    }
+  },
+  "motion": {
+    "defaults": {
+      "duration": "0.3s",
+      "ease": "ease-out"
+    },
+    "micro_interactions": {
+      "hover_lift": "hover:-translate-y-1 transition-transform duration-300",
+      "button_press": "active:scale-95"
+    }
+  },
+  "accessibility": {
+    "contrast_check": "Ensure #eaeaea on #0f0f0f meets AA standards (15.8:1)",
+    "focus_states": "focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary"
+  },
+  "instructions_to_main_agent": {
+    "general": [
+      "Use the 'QuickForm' strategy: Inputs should be large, comfortable, and auto-focus where possible.",
+      "The Ticket view is the 'Hero' of the app. It must look export-ready at all times.",
+      "Dashboard is 'High Density Grid' Mode B. Compact but readable.",
+      "Do NOT use gradients for the background. Stick to the flat #0f0f0f as requested.",
+      "Use 'sonner' for all notifications (Ticket created, Copied to clipboard, etc)."
+    ],
+    "specific_pages": {
+      "/": "Dashboard. Show a summary at top (Total Tickets, Today's Volume). Below, a filterable table of tickets.",
+      "/new": "The 'POS' interface. Minimal distractions. Big inputs. Auto-calculate total immediately.",
+      "/t/:id": "Public view. No nav bar. Just the ticket floating in the center of the screen, with 'Download PDF' and 'Share WhatsApp' floating at the bottom."
+    },
+    "ticket_rendering": {
+      "css_trick": "For the jagged bottom edge of the receipt, use: 'background: linear-gradient(135deg, transparent 10px, #1a1a1a 0) top left, linear-gradient(225deg, transparent 10px, #1a1a1a 0) top right; background-size: 20px 20px; background-repeat: repeat-x;'"
+    }
+  },
+  "UNIVERSAL_GUIDELINES": [
+    "Dark colors look good when used independently without gradients. DO NOT use dark colors as gradients",
+    "Don't make generic centered layouts, simplistic gradients, and uniform styling.",
+    "Create depth through layered design elements with z-index hierarchy",
+    "You MUST NOT apply universal transition. Eg: transition: all. This results in breaking transforms.",
+    "You MUST NOT center align the app container, ie do not add .App { text-align: center; } in the css file.",
+    "Every interaction needs micro-animations - hover states, transitions.",
+    "Use sonner for toasts"
+  ]
+}
